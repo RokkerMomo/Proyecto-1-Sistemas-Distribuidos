@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Crud Distribuido</title>
+</head>
+<body class="container ">  
+    <div class="p-3 mb-2 bg-dark text-white container text-center"><h1>Crud con microservicios</h1></div>
+    
+    <a href="/nuevo" style="margin: 10px;" type="button" class="btn btn-primary">Nuevo Producto <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAzJJREFUSEvFllmojlEUhp8XUURCCSXKHOXmlKmQC5FMRSRyIaJMoUgyZAoZL0wXIgmFCxmKIikyRIaQOXMISUIsLa2f/3z2Oec7p1NnXf3//tZe795rv2utV9SQqYZwqRSwmdUGegBtgBZx6JfAY+CSpJ95L5IL2MzaAwuAEUDjMoK/B44AqyQ9qugA5QKbWX1gNTAN8Nvmse/AWmCZJP+dtDKBzczTeRToGjs9yCHgJHADeADUibR3BwYBI2PNt1wChkp6k0JOAptZZ+A80CQ2nfBbS3pS3pXNrB2wDRgQfi+cE5KeZ/f9B2xmzYGrQKtwXippSZ4cu4+Zecw1wNzYcwcokfSlOEYK+AAwOpwWS1qWBTUzJ5in1+26pI8Jn43AzFjfJGlWmcBm1i3ez32OSRqSuqmZ9QPOxLf+ks4mgJ2M54BewA/ngiQvvT9W6sZmthuYAHhaOhQ7FgfOAxxp7wjcCsKtlLTwP2Azqwu8AxoCWyV5CSUtL3CAe20PB55IapsCdiaejg+DJTmTqwN4ErAzAnkW75dKtZlNBHaFQ6tCmjNEKhzEibUh/sx2gmVO+JdwZua+1+K717X3hn9vbGbzogx8vV6h62TSWlYSsut/CRcH/xAOsyRtygLPAdaFQyNJn+ONihlcFeBGwKfYOEfS+izwWGBfOHSSdC+Ai2u2KqnuAtyOjWMkeZ8olWofdxfCYayk/dVErvHAnojlHexKFthr+i3QFNgryTdUB6sPAqOA10BLSVYKONK6HZgMfAU6SnqWQs5bx2bmDcQnmfeILZJmFOJlO5c7elP39VPAwMIJiw+QBzjUirfSPsAvoJ0kVyp/LDUk9gLj4vtySYuyt845JDYD02PvDklTiuOkgJsBl2PAu68ricV568jMagFeMoXJdNcHhaRCLadvHG/tGutiRghMlfS0vAOEgNgK9A0/n0a9UwKiMtLnG3AYOA7cDOnjpPHGXxKqw6VPQZt51oZJepU6bEVirwGwHHA2egrzmGszF4grqiT2MizuBMwPeestMGUub10M+twt90mSrK7gDV1V9gRaZwT9QyekJC+bXJZL0OeKVEmnGgP+DUBzSi7n2cLlAAAAAElFTkSuQmCC"/></a>
+    <table class="table table-bordered table table-striped text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Descripccion</th>
+                <th>Opciones</th>
+              </tr>
+        </thead>
+        <% productos.forEach(function(producto){ %>
+            <tr>
+                <td> <%= producto.id %> </td>
+                <td> <%= producto.descripcion %> </td>
+                <td> <a href="/editar/<%= producto.id %>" type="button" class="btn btn-info"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAeBJREFUSEvtlrtKZEEQhj8vKCuKYiYabCJGiosaaLBqsCAsixooIpobuj6GIOI7uLBGBrJeUHBvYCCCgQ+gIGYGBoLilV96pC1Pz5wzc4YJtLPTp7q//qurqquMEo2yEnEpNrgP2AdurMAQuAHoAMpjekSbXxrbz8AW8A/4auFR4O/APFAZE7oEzBrbLuAvUOPmty3cgpuB05hAmS0Cc8a+AjgGWsz8BjCcUW7Bcs8ft0DKD7Mc4hb4H/j/ye1T5/3XPfcCB5qz4AFg1xkPAr8TqO8G2oAfbo0PvwdGgLXMfmmBe4AdQAongZ8O0OmEzAArvog0wHKfotd36zSw7ED1wEWudErqauWpoLVm4wej/NWNFaJYULn3Q0Qc3AFTnstTA+eCjgGr2QIzH8W6jvUsSqOgWnMN7OUb1dpgE6iOUKO8Ho9Qmlkz5KdnEsVfXB6GoMrTX+ZArcARUAW8qAtJwFcBpQqkUb84ePBgliQBK0XsUBkU1CrN2BUFLKieO708oZE6WBH6LQdUh0kFnOC9eDZ9Bz8/s4U0AnFcr2dRXYpGv2uHnj4suAk4i7NjHjYfgZNQydS8GreFBB1mnDOoCZjwDUPtbSPQHuGROBDfRkVHJfPcLix2Qx886NsDPwLhyoAfsHmIzQAAAABJRU5ErkJggg=="/></a> <a href="/borrar/<%= producto.id %>" style="padding: 5;" type="button" class="btn btn-danger"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAARlJREFUSEvtlr0NwjAQhb+IAViBAaBhAX4WoIASBKOBoISCBfhZgAbRswIDINAhIyUhzp0VRCji8vyen9/5xXFESSMqSRercA0YAC3wch7AGdgCd82QRVgwO6CrLebm90Bfw1qEm86JtlZ8XjiXPIJFWJyKCxk94OBZ0Ip70f9GuAHMUo6kNnW1BXD1ONZw8zg37TjerpAztWATx/Q3wvGdS4g6wDHgU3rzVW5euFRyTn9VbqiwBE9CJAGTsMjIqn1dOGtBay3RoFDHVpHK8UcOq1ZrF0gVLumQtQuFvuPSbi7L78/XhUKOfyK8BoZWJQ9uA4yy5vIukDGwLCg8AVahwoJvu8dAPXADN/eAOPl4lldmoKYNXprwE9SkiR+VqIU+AAAAAElFTkSuQmCC"/></a> </td>
+              </tr>
+          <% }); %>
+        
+      </table>
+
+    
+</body>
+</html>

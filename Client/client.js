@@ -16,7 +16,7 @@ app.use(express(json));
 
 const router = express.Router();
 
-
+ 
 //Endpoint Principal Obtener Productos
 router.get('/',(req,res)=>{
     //Obtener Productos
@@ -76,9 +76,6 @@ product.updateProduct(data_product, function (err,response){
 
 })
 
-
-
-
 //Enpoint Producto Nuevo
 router.post('/guardar', (req,res)=>{
 const id = req.body.id;
@@ -104,10 +101,6 @@ const descripcion = req.body.descripcion
                 });
     }) 
 });
-
-
-
-
 
 //Endpoint Borrar
 router.get('/borrar/:id',(req,res)=>{
@@ -136,8 +129,11 @@ router.get('/borrar/:id',(req,res)=>{
             });
 })
 
-app.use('/', router);
 
+
+
+
+app.use('/', router);
 app.listen(5000,()=>{
     console.log('App Running in http://localhost:5000')
 })

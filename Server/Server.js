@@ -2,7 +2,7 @@
 const client = require('./db.js');
 var grpc = require("@grpc/grpc-js");
 var protoLoader = require("@grpc/proto-loader");
-
+var pidusage = require('pidusage')
 //Direccion del archivo proto
 const PROTO_PATH ="./Proto/products.proto";
 
@@ -18,8 +18,6 @@ server.addService(grpcObject.ProductService.service,{
     deleteProduct:deleteProduct,
     updateProduct:updateProduct,
     getProduct:getProduct,
-
-
 });
 //inicia el servidor
 server.bindAsync("127.0.0.1:3000", grpc.ServerCredentials.createInsecure(), (error, port) => {
@@ -37,9 +35,11 @@ async function getProducts (_,callback)  {
         // hace una peticion a la base de datos y guarda los resultados en una variable row
         const {rows} = await client.query(`SELECT * FROM public."Productos"`);
         if (rows.length !== 0) {
-            console.log(rows); 
+            
             //se la pasa al callback
-            callback(null, {Products: rows });       
+            const stats = await pidusage(process.pid)
+            console.log(stats)
+            callback(null, {Products: rows, stats:stats.memory});       
         } else {
             callback({
                 code: grpc.status.NOT_FOUND,
@@ -51,8 +51,6 @@ async function getProducts (_,callback)  {
     callback(error)
 }
 }
-
-
 
 //Funcion Crear Productos
 function createProduct (call, callback) {
@@ -75,7 +73,6 @@ try{
       console.log("error: ", error);
     }
 } 
-
 
 //Funcion Borrar Producto
 async function deleteProduct (call, callback) {
